@@ -189,8 +189,8 @@ public class HotelDB {
 
         return email;
     }
-    public List<Booking> getBookings(int userId) throws Exception {
-        List<Booking> bookings = new ArrayList<>();
+    public String getPhone(int userId) throws Exception {
+        String phone = null;
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -204,10 +204,118 @@ public class HotelDB {
 
             connection = DriverManager.getConnection(url, username, password);
 
-            String sql = "SELECT bookings.booking_id, bookings.user_id, bookings.room_id, bookings.check_in_date, bookings.check_out_date, bookings.booking_date, bookings.total_price, bookings.status, users.full_name, users.email " +
-                    "FROM bookings " +
-                    "JOIN users ON bookings.user_id = users.user_id " +
-                    "WHERE bookings.user_id = ?";
+            String sql = "SELECT phone FROM users WHERE user_id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, userId);
+
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                phone = resultSet.getString("phone");
+            }
+        } finally {
+            close(connection, statement, resultSet);
+        }
+
+        return phone;
+    }
+
+
+    public String getPrice(int room_id) throws Exception {
+        String phone = null;
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String url = "jdbc:mysql://localhost:3306/hotel_booking_system";
+            String username = "root";
+            String password = "";
+            Class.forName("com.mysql.jdbc.Driver");
+
+            connection = DriverManager.getConnection(url, username, password);
+
+            String sql = "SELECT price FROM rooms WHERE room_id = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, room_id);
+
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                phone = resultSet.getString("price");
+            }
+        } finally {
+            close(connection, statement, resultSet);
+        }
+
+        return phone;
+    }
+//    public List<Booking> getBookings(int userId) throws Exception {
+//        List<Booking> bookings = new ArrayList<>();
+//
+//        Connection connection = null;
+//        PreparedStatement statement = null;
+//        ResultSet resultSet = null;
+//
+//        try {
+//            String url = "jdbc:mysql://localhost:3306/hotel_booking_system";
+//            String username = "root";
+//            String password = "";
+//            Class.forName("com.mysql.jdbc.Driver");
+//
+//            connection = DriverManager.getConnection(url, username, password);
+//
+//            String sql = "SELECT bookings.booking_id, bookings.user_id, bookings.room_id, bookings.check_in_date, bookings.check_out_date, bookings.booking_date, bookings.total_price, bookings.status, users.full_name, users.email " +
+//                    "FROM bookings " +
+//                    "JOIN users ON bookings.user_id = users.user_id " +
+//                    "WHERE bookings.user_id = ?";
+//            statement = connection.prepareStatement(sql);
+//            statement.setInt(1, userId);
+//
+//            resultSet = statement.executeQuery();
+//
+//            while (resultSet.next()) {
+//                int bkId = resultSet.getInt("booking_id");
+//                int roomId = resultSet.getInt("room_id");
+//                String checkInDate = resultSet.getString("check_in_date");
+//                String checkOutDate = resultSet.getString("check_out_date");
+//                String bookingDate = resultSet.getString("booking_date");
+//                double totalPrice = resultSet.getDouble("total_price");
+//                String status = resultSet.getString("status");
+//                String fullName = resultSet.getString("full_name");
+//                String email = resultSet.getString("email");
+//
+//                Booking booking = new Booking(bkId, userId, roomId, checkInDate, checkOutDate, bookingDate, totalPrice, status);
+//                booking.setFull_name(fullName);
+//                booking.setEmail(email);
+//                bookings.add(booking);
+//            }
+//        } finally {
+//            close(connection, statement, resultSet);
+//        }
+//
+//        return bookings;
+//    } //chạy dc
+
+    public List<Booking> getBookings(int userId) throws Exception {
+        List<Booking> bookings = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String url = "jdbc:mysql://localhost:3306/hotel_booking_system";
+            String username = "root";
+            String password = "";
+            Class.forName("com.mysql.jdbc.Driver");
+
+            connection = DriverManager.getConnection(url,username,password);
+            String sql = "SELECT b.booking_id, b.user_id, b.room_id, b.check_in_date, b.check_out_date, b.booking_date, b.status, r.price "
+                    + "FROM bookings b "
+                    + "JOIN rooms r ON b.room_id = r.room_id "
+                    + "WHERE b.user_id = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, userId);
 
@@ -219,14 +327,10 @@ public class HotelDB {
                 String checkInDate = resultSet.getString("check_in_date");
                 String checkOutDate = resultSet.getString("check_out_date");
                 String bookingDate = resultSet.getString("booking_date");
-                double totalPrice = resultSet.getDouble("total_price");
+                double totalPrice = resultSet.getDouble("price");
                 String status = resultSet.getString("status");
-                String fullName = resultSet.getString("full_name");
-                String email = resultSet.getString("email");
 
                 Booking booking = new Booking(bkId, userId, roomId, checkInDate, checkOutDate, bookingDate, totalPrice, status);
-                booking.setFull_name(fullName);
-                booking.setEmail(email);
                 bookings.add(booking);
             }
         } finally {
@@ -235,6 +339,7 @@ public class HotelDB {
 
         return bookings;
     }
+
 
 
     public void addBooking(Booking booking) throws Exception {

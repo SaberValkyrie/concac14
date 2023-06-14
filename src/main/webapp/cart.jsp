@@ -19,7 +19,9 @@
             if (selectedRooms.length > 0) {
                 var roomId = selectedRooms[0].getAttribute("data-roomId");
                 var userId = selectedRooms[0].getAttribute("data-userId");
-                window.location.href = "booking.jsp?roomId=" + roomId + "&userId=" + userId;
+                var price = selectedRooms[0].getAttribute("data-price");
+
+                window.location.href = "booking.jsp?roomId=" + roomId + "&userId=" + userId + "&price=" + price;
             }
         }
     </script>
@@ -52,7 +54,7 @@
                 <td>${cartItem.availability}</td>
                 <td>${cartItem.hotelName}</td>
                 <td>
-                    <input type="checkbox" name="selectedItems" value="${cartItem.id}" data-roomId="${cartItem.roomId}" data-userId="${cartItem.userId}">
+                    <input type="checkbox" name="selectedItems" value="${cartItem.id}" data-roomId="${cartItem.roomId}" data-userId="${cartItem.userId}" data-price="${cartItem.price}">
                 </td>
             </tr>
         </c:forEach>

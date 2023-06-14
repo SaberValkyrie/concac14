@@ -196,17 +196,24 @@ public class HotelServlet extends HttpServlet {
 
         // Lấy danh sách thông tin khách hàng (full_name và email) dựa trên user_id
         List<String> fullNames = new ArrayList<>();
+        List<String> rooms = new ArrayList<>();
         List<String> emails = new ArrayList<>();
+
         for (Booking booking : bookings) {
             String fullName = hotelDB.getFullName(booking.getUser_id());
             String email = hotelDB.getEmail(booking.getUser_id());
+            Double price = Double.parseDouble(hotelDB.getPrice(booking.getRoom_id()));
+
             fullNames.add(fullName);
             emails.add(email);
+            rooms.add(String.valueOf(price));
+
         }
 
         request.setAttribute("BOOKING_LIST", bookings);
         request.setAttribute("FULL_NAMES", fullNames);
         request.setAttribute("EMAILS", emails);
+        request.setAttribute("PRICE", rooms);
 
         // Forward to the booking-list.jsp
         RequestDispatcher dispatcher = request.getRequestDispatcher("/booking-list.jsp");

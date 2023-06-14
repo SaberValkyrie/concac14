@@ -6,6 +6,7 @@ public class Booking {
         this.status = status;
     }
     private User user;
+    private Room room;
 
     public Booking(int bookingId, int userId, int roomId, String checkInDate, String checkOutDate, double totalPrice, String status) {
         this.id = bookingId;

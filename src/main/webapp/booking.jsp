@@ -25,7 +25,7 @@
     <input type="date" name="checkOutDate" id="checkOutDate">
     <br>
     <label for="totalPrice">Total Price:</label>
-    <input type="text" name="totalPrice" id="totalPrice">
+    <input type="text" name="totalPrice"value="${param.price}" readonly id="totalPrice">
     <br>
     <input type="submit" value="Book">
 </form>
