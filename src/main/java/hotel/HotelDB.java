@@ -515,8 +515,8 @@ public class HotelDB {
                 String address = myRs.getString("address");
                 String phone = myRs.getString("phone");
                 String email = myRs.getString("email");
-
-                Hotel hotel = new Hotel(id, hotel_name, address, phone,email);
+                String img = myRs.getString("img");
+                Hotel hotel = new Hotel(id, hotel_name, address, phone,email,img);
 
                 students.add(hotel);
             }
@@ -553,8 +553,8 @@ public class HotelDB {
                 String address = rs.getString("address");
                 String phone = rs.getString("phone");
                 String email = rs.getString("email");
-
-                Hotel hotel = new Hotel(id, name, address, phone, email);
+                String img = rs.getString("img");
+                Hotel hotel = new Hotel(id, name, address, phone, email,img);
                 hotelList.add(hotel);
             }
         } finally {
@@ -654,8 +654,8 @@ public class HotelDB {
                 String address = resultSet.getString("address");
                 String phone = resultSet.getString("phone");
                 String email = resultSet.getString("email");
-
-                hotel = new Hotel(hotelId, hotelName, address, phone, email);
+                String img = resultSet.getString("img");
+                hotel = new Hotel(hotelId, hotelName, address, phone, email,img);
             }
         } finally {
             // Đảm bảo đóng tất cả các tài nguyên (connection, statement, resultSet)
@@ -810,9 +810,10 @@ public class HotelDB {
                 String description = rs.getString("description");
                 byte availability = rs.getByte("availability");
                 String roomTypeName = rs.getString("room_type_name");
+                String img = rs.getString("img");
 
                 RoomType roomType = new RoomType(roomTypeId, roomTypeName, description);
-                Room room = new Room(roomId, roomType.getRoom_type_id(), hotel_id, roomNumber, price, description, availability);
+                Room room = new Room(roomId, roomType.getRoom_type_id(), hotel_id, roomNumber, price, description, availability,img);
                 roomList.add(room);
             }
         } finally {

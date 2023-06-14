@@ -4,14 +4,14 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -94,6 +94,31 @@ public class HotelServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
+    }
+
+
+    private String uploadFile(Part part, String fileName, String uploadDirectory) throws IOException {
+        String filePath = uploadDirectory + File.separator + fileName;
+
+        try (InputStream is = part.getInputStream(); FileOutputStream out = new FileOutputStream(filePath)) {
+            byte[] buffer = new byte[8192];
+            int bytesRead;
+            while ((bytesRead = is.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+        }
+
+        return filePath;
+    }
+    private String getFileName(Part part) {
+        String contentDisposition = part.getHeader("content-disposition");
+        String[] elements = contentDisposition.split(";");
+        for (String element : elements) {
+            if (element.trim().startsWith("filename")) {
+                return element.substring(element.indexOf("=") + 1).trim().replace("\"", "");
+            }
+        }
+        return "";
     }
 
     private void bookRoom(HttpServletRequest request, HttpServletResponse response, int roomId) throws ServletException, IOException {

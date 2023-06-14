@@ -10,6 +10,24 @@ public class Hotel {
     private String address;
     private String phone;
     private String email;
+    private String img;
+
+    public Hotel(int id, String name, String address, String phone, String email, String img) {
+        this.hotel_id = id;
+        this.hotel_name = name;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public Hotel(int hotel_id, String hotel_name, String address, String phone, String email) {
         this.hotel_id = hotel_id;

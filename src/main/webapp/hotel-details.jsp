@@ -81,6 +81,7 @@
         <table>
             <tr>
                 <th>Room ID</th>
+                <th>Images</th>
                 <th>Room Type</th>
                 <th>Room Number</th>
                 <th>Price</th>
@@ -91,11 +92,13 @@
             <c:forEach var="room" items="${ROOMS}">
                 <tr>
                     <td>${room.room_id}</td>
+                    <td><img src="img/${room.img}" alt="Room Images">
                     <td>${room.roomType.room_type_name}</td>
                     <td>${room.room_number}</td>
                     <td>${room.price}</td>
                     <td>${room.description}</td>
                     <td>${room.availability}</td>
+
                     <td>
                         <a href="HotelServlet?command=ADD_TO_CART&roomId=${room.room_id}">Add to List</a> |
                         <input type="checkbox" name="selectedItems" value="${cartItem.id}" data-roomId="${cartItem.roomId}" data-userId="${cartItem.userId}">

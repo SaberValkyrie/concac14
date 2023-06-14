@@ -34,7 +34,7 @@
                 <c:forEach var="hotel" items="${requestScope.HOTEL_LIST}">
                     <div class="col">
                         <div class= "card shadow-sm">
-                            <img src="#" alt="example">
+                            <img src="img/${hotel.img}" alt="example">
                             <div class="card-body">
                                 <p class="card-text">
                                     <label>Hotel name: </label> ${hotel.hotel_name}

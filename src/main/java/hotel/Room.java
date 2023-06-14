@@ -10,7 +10,15 @@ public class Room {
     private byte availability;
     private RoomType roomType;
 
+    public String getImg() {
+        return img;
+    }
 
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    private String img;
 
     public Room(int roomId, int roomTypeId, int hotelId, int roomNumber, double price, String description, byte availability) {
         this.room_id = roomId;
@@ -28,6 +36,17 @@ public class Room {
         this.price = price;
         this.description = description;
         this.availability = availability;
+    }
+
+    public Room(int roomId, int room_type_id, int hotel_id, int roomNumber, double price, String description, byte availability, String img) {
+        this.room_id = roomId;
+        this.room_type_id = room_type_id;
+        this.hotel_id = hotel_id;
+        this.room_number = roomNumber;
+        this.price = price;
+        this.description = description;
+        this.availability = availability;
+        this.img = img;
     }
 
     public int getRoom_id() {
