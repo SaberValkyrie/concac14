@@ -64,7 +64,9 @@
 </head>
 <body>
 
+
 <h1>Hotel Details</h1>
+
 
 <c:if test="${not empty HOTEL}">
 
@@ -101,7 +103,6 @@
 
                     <td>
                         <a href="HotelServlet?command=ADD_TO_CART&roomId=${room.room_id}">Add to List</a> |
-                        <input type="checkbox" name="selectedItems" value="${cartItem.id}" data-roomId="${cartItem.roomId}" data-userId="${cartItem.userId}">
                     </td>
                 </tr>
             </c:forEach>

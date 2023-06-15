@@ -20,14 +20,15 @@
                 var roomId = selectedRooms[0].getAttribute("data-roomId");
                 var userId = selectedRooms[0].getAttribute("data-userId");
                 var price = selectedRooms[0].getAttribute("data-price");
-
-                window.location.href = "booking.jsp?roomId=" + roomId + "&userId=" + userId + "&price=" + price;
+                var hotelId = selectedRooms[0].getAttribute("data-hotel");
+                window.location.href = "booking.jsp?roomId=" + roomId + "&userId=" + userId + "&price=" + price + "&hotelId=" + hotelId;
             }
         }
     </script>
     <title>Cart</title>
 </head>
 <body>
+
 <h1>Cart</h1>
 <form action="HotelServlet" method="POST">
     <table>
@@ -54,7 +55,13 @@
                 <td>${cartItem.availability}</td>
                 <td>${cartItem.hotelName}</td>
                 <td>
-                    <input type="checkbox" name="selectedItems" value="${cartItem.id}" data-roomId="${cartItem.roomId}" data-userId="${cartItem.userId}" data-price="${cartItem.price}">
+                    <input type="checkbox" name="selectedItems"
+                           value="${cartItem.id}"
+                           data-roomId="${cartItem.roomId}"
+                           data-userId="${cartItem.userId}"
+                           data-price="${cartItem.price}"
+                           data-hotel="${cartItem.hotel_id}"
+                    >
                 </td>
             </tr>
         </c:forEach>

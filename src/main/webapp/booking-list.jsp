@@ -13,12 +13,16 @@
     <tr>
         <th>Booking ID</th>
         <th>User ID</th>
-        <th>Người đặt</th>
+        <td>Hotel Name</td>
+        <th>Người nhận phòng</th>
         <th>Email</th>
+        <th>Phone</th>
         <th>Room ID</th>
         <th>Check-in Date</th>
         <th>Check-out Date</th>
         <th>Booking Date</th>
+        <th>Ng lon</th>
+        <th>Trẻ em</th>
         <th>Total Price</th>
         <th>Status</th>
     </tr>
@@ -28,13 +32,17 @@
         <tr>
             <td>${booking.id}</td>
             <td>${booking.user_id}</td>
-            <td>${FULL_NAMES[status.index]}</td>
-            <td>${EMAILS[status.index]}</td>
+            <td>${HOTEL_NAMES[status.index]}</td>
+            <td>${CUSTOMERS[status.index].name}</td>
+            <td>${CUSTOMERS[status.index].email}</td>
+            <td>${CUSTOMERS[status.index].phone}</td>
             <td>${booking.room_id}</td>
             <td>${booking.check_in_date}</td>
             <td>${booking.check_out_date}</td>
             <td>${booking.booking_date}</td>
-            <td>${booking.total_price}</td>
+            <td>${booking.adults}</td>
+            <td>${booking.children}</td>
+            <td>${PRICE[status.index]}</td>
             <td>${booking.status}</td>
         </tr>
     </c:forEach>

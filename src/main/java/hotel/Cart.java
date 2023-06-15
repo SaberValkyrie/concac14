@@ -12,7 +12,27 @@ public class Cart {
     private String hotelName;
     private Room room;
     private Hotel hotel;
+
+    public Cart(int cartId, int roomId, int hotel_id, int userId, int roomNumber, String roomTypeName) {
+        this.id = cartId;
+        this.roomId = roomId;
+        this.hotel_id = hotel_id;
+        this.userId = userId;
+        this.roomNumber = roomNumber;
+        this.roomTypeName = roomTypeName;
+    }
+
+    public int getHotel_id() {
+        return hotel_id;
+    }
+
+    public void setHotel_id(int hotel_id) {
+        this.hotel_id = hotel_id;
+    }
+
     private User user;
+
+    private int hotel_id; // Thuộc tính hotel_id mới
 
     public Cart(int id, int userId, int roomId) {
         this.id = id;

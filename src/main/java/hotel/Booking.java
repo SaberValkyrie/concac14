@@ -1,17 +1,132 @@
 package hotel;
 
 public class Booking {
+    private int adults;
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    private double total_price_from_web;
+
+    public double getTotal_price_from_web() {
+        return total_price_from_web;
+    }
+
+    public void setTotal_price_from_web(double total_price_from_web) {
+        this.total_price_from_web = total_price_from_web;
+    }
+
+    public Booking(int bkId, int userId, int roomId, int htID,
+                   String checkInDate, String checkOutDate,
+                   String bookingDate, double totalPrice,
+                   int adults, int children, String status, String hotelName) {
+        this.id = bkId;
+        this.user_id = userId;
+        this.room_id = roomId;
+        this.hotel_id = htID;
+        this.hotelName = hotelName;
+        this.check_in_date = checkInDate;
+        this.check_out_date = checkOutDate;
+        this.booking_date = bookingDate;
+        this.total_price = totalPrice;
+        this.adults = adults;
+        this.children = children;
+        this.status = status;
+    }
+
+    public int getAdults() {
+        return adults;
+    }
+
+    public void setAdults(int adults) {
+        this.adults = adults;
+    }
+
+    public int getChildren() {
+        return children;
+    }
+
+    public void setChildren(int children) {
+        this.children = children;
+    }
+
+    private int children;
     public Booking(int bookingId, String status) {
         this.id = bookingId;
         this.status = status;
     }
+
+
+    public Booking(int bkId, int userId, int roomId, int htID, String checkInDate, String checkOutDate, String bookingDate, double totalPrice, String status, String hotelName) {
+        this.id = bkId;
+        this.user_id = userId;
+        this.room_id = roomId;
+        this.hotel_id = htID;
+        this.hotelName = hotelName;
+        this.check_in_date = checkInDate;
+        this.check_out_date = checkOutDate;
+        this.booking_date = bookingDate;
+        this.total_price = totalPrice;
+        this.status = status;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    private String hotelName;
+
     private User user;
     private Room room;
+    private int hotel_id;
 
-    public Booking(int bookingId, int userId, int roomId, String checkInDate, String checkOutDate, double totalPrice, String status) {
+    public Booking(int bkId, int userId, int roomId, int htID,String hotelName, String checkInDate, String checkOutDate, String bookingDate, double totalPrice, String status) {
+        this.id = bkId;
+        this.user_id = userId;
+        this.room_id = roomId;
+        this.hotel_id = htID;
+        this.hotelName = hotelName;
+        this.check_in_date = checkInDate;
+        this.check_out_date = checkOutDate;
+        this.booking_date = bookingDate;
+        this.total_price = totalPrice;
+        this.status = status;
+    }
+
+    public Booking(int parseInt, int roomId, int hotelId, String checkInDate, String checkOutDate, double totalPrice, String status) {
+        this.user_id = parseInt;
+        this.room_id = roomId;
+        this.hotel_id = hotelId;
+        this.check_in_date = checkInDate;
+        this.check_out_date = checkOutDate;
+        this.total_price = totalPrice;
+        this.status = status;
+    }
+
+
+    public int getHotel_id() {
+        return hotel_id;
+    }
+
+    public void setHotel_id(int hotel_id) {
+        this.hotel_id = hotel_id;
+    }
+
+    public Booking(int bookingId, int userId, int roomId, int htID,String checkInDate, String checkOutDate, double totalPrice, String status) {
         this.id = bookingId;
         this.user_id = userId;
         this.room_id = roomId;
+        this.hotel_id = htID;
         this.check_in_date = checkInDate;
         this.check_out_date = checkOutDate;
         this.total_price = totalPrice;
@@ -21,13 +136,13 @@ public class Booking {
     public Booking() {
 
     }
-    private String full_name;
+    private String name;
     private String email;
 
     // Constructor và các phương thức getter đã tồn tại
 
     public void setFull_name(String full_name) {
-        this.full_name = full_name;
+        this.name = full_name;
     }
 
     public void setEmail(String email) {
